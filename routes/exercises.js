@@ -22,4 +22,31 @@ router.route('/add').post((req, res) =>  {
                 .catch(err => 'Could not run ' + err)
 })
 
+router.route('/:id').get((req, res) => {
+    Exercise.findById(req.params.id)
+        .then(exercise => {
+            console.log(exercise)
+        })
+        .catch(err => res.json('Error : ' + err))
+})
+
+router.route('/:id/update').post((req, res) => {
+    Exercise.findById(res.params.id, )
+        .then(exercise => {
+            exercise.username += req.body.username; 
+            exercise.save() 
+                .then(() => res.json('This one is done'))
+        })
+        .catch(err => err.json('Error : ' + err))
+})
+
+router.route('/:id/delete').delete((req, res) => {
+    Exercise.findByIdAndDelete(res.params.id) 
+        .then(exercise => {
+            res.json('Deleted')
+        })
+        .catch(err => err.json('Error : ' + err))
+})
+
+
 module.exports = router; 
