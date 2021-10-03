@@ -3,9 +3,11 @@ const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
 const exerciseSchema = new Schema({
-     name: {type:String, required:true},
+     username: {type:String, required:true},
      description: {type:String, required:true},
-     data:{type:Date, require:true}
+     interval: {type:String|Number},
+     details: {type:String},
+     date:{type:Date, require:true}
     },{
     timestamps:true
     }

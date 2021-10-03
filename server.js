@@ -15,7 +15,7 @@ const port = process.env.PORT || 5000;
 const exerciseRoute = require('./routes/exercises')
 const userRoute = require('./routes/users');
 
-app.use(cors); 
+app.use(cors()); 
 app.use(express.json());
 
 connection.once('open', ()=> {

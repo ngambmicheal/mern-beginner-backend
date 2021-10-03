@@ -10,16 +10,18 @@ router.route('/').get((req, res) => {
 router.route('/add').post((req, res) =>  {
     const username = req.body.username; 
     const description = req.body.description;
-    const duration = Number(req.body.duration)
+    const interval = Number(req.body.interval)
+    const details = req.body.details; 
     const date = Date.parse(req.body.date); 
 
+    console.log(username)
     const newExercise = new Exercise({
-        username, description, duration, date
+        username, description, interval, details,  date
     })
 
     newExercise.save()
                 .then((exercise) => res.json(exercise))
-                .catch(err => 'Could not run ' + err)
+                .catch(err => res.status(400).json('Could not run ' + err))
 })
 
 router.route('/:id').get((req, res) => {
